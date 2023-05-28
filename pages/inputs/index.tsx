@@ -1,7 +1,9 @@
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import Button from "../../components/custom/Button";
+import Links from "../../components/custom/Link";
 
-const code = () => {
+const inputs = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
@@ -45,7 +47,7 @@ const code = () => {
           onSubmit={handleSubmit(onFormSubmit)}
           className="max-w-md mx-auto"
         >
-          <button
+          <Button
             onClick={() =>
               append({
                 name: "Other Info",
@@ -53,10 +55,9 @@ const code = () => {
                 value: "",
               })
             }
-            className="my-4 bg-blue-500 text-white px-4 py-2 rounded-lg w-full"
           >
             Append New Input
-          </button>
+          </Button>
 
           {fields.map((field, index) => {
             return (
@@ -88,14 +89,14 @@ const code = () => {
               </div>
             );
           })}
-
-          <button className="my-4 bg-blue-500 text-white px-4 py-2 rounded-lg w-full">
+          <Links to="/">GO HOME</Links>
+          <Button>
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     </div>
   );
 };
 
-export default code;
+export default inputs;
