@@ -8,13 +8,23 @@ import { ItodoContext } from "../../interface/todo";
 
 const Todo = () => {
   const { openModal, closeModal, isModalClosed } = useModal();
-  const { todos, handleToggleComplete }: ItodoContext = useContext(TodoContext);
+  const { todos, handleToggleComplete, handleDeleteTodo }: ItodoContext =
+    useContext(TodoContext);
 
   return (
     <>
       <div className="relative bg-stone-100 min-h-screen">
         <div className="flex pb-28 pt-8 px-3 flex-col gap-5 m-auto w-6/12 max-md:w-full">
-          {todos?.length && todos.map((todo) => <TodoLine key={todo.id} handleToggleComplete={handleToggleComplete} todo={todo} />)}
+          {todos?.length !== 0
+            ? todos?.map((todo) => (
+                <TodoLine
+                  key={todo.id}
+                  handleToggleComplete={handleToggleComplete}
+                  handleDeleteTodo={handleDeleteTodo} //
+                  todo={todo}
+                />
+              ))
+            : null}
           <p className="text-xs italic text-center text-gray-400">
             you&apos;ve reached the bottom :)
           </p>

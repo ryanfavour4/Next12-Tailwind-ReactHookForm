@@ -11,33 +11,12 @@ export const TodoContext = createContext<ItodoContext>(
 );
 
 export const TodoProvider = ({ children }: Props) => {
-  const [todos, setTodo] = useState<Itodo[]>([
-    {
-      id: 1,
-      task: "Task",
-      completed: false,
-    },
-    {
-      id: 2,
-      task: "Task Add another BookContext",
-      completed: false,
-    },
-    {
-      id: 3,
-      task: "Start a youtube video",
-      completed: true,
-    },
-    {
-      id: 4,
-      task: "Start a google type company",
-      completed: true,
-    },
-  ]);
+  const [todos, setTodo] = useState<Itodo[] | []>([]);
 
   const [filteredTodo, setFilteredTodo] = useState<Itodo[] | []>([]);
 
   const handleAddtodo = (todo: Itodo) => {
-    setTodo([...todos, todo]);
+    setTodo([...todos, todo]); 
   };
 
   const handleToggleComplete = (todo: Itodo) => {
@@ -47,6 +26,10 @@ export const TodoProvider = ({ children }: Props) => {
     setTodo(secondaryArray);
   };
 
+  const handleDeleteTodo = (todo: Itodo) => {
+    setTodo(todos.filter((t) => t.id !== todo.id));
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -54,6 +37,7 @@ export const TodoProvider = ({ children }: Props) => {
         filteredTodo,
         handleAddtodo,
         handleToggleComplete,
+        handleDeleteTodo
       }}
     >
       {children}

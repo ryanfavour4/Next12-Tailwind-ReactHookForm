@@ -9,4 +9,5 @@ export type ItodoContext = {
   filteredTodo?: Itodo[] | [];
   handleAddtodo: (itodo: Itodo) => any | void,
   handleToggleComplete: (itodo: Itodo) => any | void
+  handleDeleteTodo: (itodo: Itodo) => any | void
 }

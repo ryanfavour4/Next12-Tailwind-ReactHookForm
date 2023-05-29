@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* Change autocomplete styles in WebKit */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -14,22 +12,45 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px ridge #2988EA;
+  border: 1px ridge #2988ea;
   outline: none;
-  -webkit-text-fill-color: #2988EA ;
+  -webkit-text-fill-color: #2988ea;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   transition: background-color 200s ease-in-out 0s;
   font-weight: 500;
 }
 
-*{
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
-   transition: all 0.5s ease-in-out;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
 }
 
-body { 
-    position: relative;
-    transition: all 0.5s ease-in-out;
+html {
+  overflow-x: hidden !important;
+}
+
+body {
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  overflow-x: hidden;
+}
+
+.toDeleteSoon {
+  cursor: grab;
+  transition: none;
+  animation: glowing-shadow 2s ease-in-out infinite;
+}
+
+@keyframes glowing-shadow {
+  0% {
+    box-shadow: 0 0 5px #ff0000;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff0000;
+  }
+  100% {
+    box-shadow: 0 0 5px #ff0000;
+  }
 }
