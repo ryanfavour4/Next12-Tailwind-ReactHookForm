@@ -84,7 +84,7 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
           handleTouchEnd();
           setTodoToDelete(todo);
         }}
-        className="font-bold text-lg text-primaryColor"
+        className="font-bold text-4xl text-primaryColor"
       >
         ⇋
       </span>
