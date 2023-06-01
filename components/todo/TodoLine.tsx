@@ -29,13 +29,13 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
       // if (distanceHighCheck && incrementTrack > 0) {
       //   setIncrementTrack(incrementTrack / currentX);
       // }
-      setIncrementTrack(incrementTrack - 2);
+      setIncrementTrack(incrementTrack - 15);
     }
     if (distanceLowCheck) {
       // if (distanceHighCheck && incrementTrack > 0) {
       //   setIncrementTrack(-(incrementTrack / currentX));
       // }
-      setIncrementTrack(incrementTrack + 2);
+      setIncrementTrack(incrementTrack + 15);
     }
   }
 
@@ -54,11 +54,15 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
   const handleTouchEnd = () => {
     setIncrementTrack(0);
 
-    if (incrementTrack > 28) {
+    if (incrementTrack > 15) {
       console.log("Swiped right");
+      console.log(todoToDelete);
+      console.log(incrementTrack);
       handleDeleteTodo(todoToDelete);
-    } else if (incrementTrack < -38) {
+    } else if (incrementTrack < -15) {
       console.log("Swiped left");
+      console.log(todoToDelete);
+      console.log(incrementTrack);
       handleDeleteTodo(todoToDelete);
     }
 
@@ -68,26 +72,24 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
 
   return (
     <div
+      onTouchStart={(e) => {
+        handleTouchStart(e), setTodoToDelete(todo);
+      }}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={() => {
+        handleTouchEnd();
+        setTodoToDelete(todo);
+      }}
       style={{
-        transform: `translateX(${incrementTrack + 5}pt)`,
+        transform: `translateX(${incrementTrack}pt)`,
         transition: "all 0.05s linear",
       }}
       className={`${
-        incrementTrack > 25 || incrementTrack < -25 ? "toDeleteSoon" : null
-      } p-5 bg-white flex justify-between w-full border align-middle shadow-inner rounded-full`}
+        incrementTrack > 10 || incrementTrack < -10 ? "toDeleteSoon" : null
+      } p-5 bg-white flex items-start justify-between w-full border align-middle shadow-inner rounded-full`}
     >
       <p className="text-gray-500 text-base font-medium">{todo?.task}</p>
-      <span
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={() => {
-          handleTouchEnd();
-          setTodoToDelete(todo);
-        }}
-        className="font-bold text-4xl text-primaryColor"
-      >
-        ⇋
-      </span>
+      <span className="font-bold  text-primaryColor">⇋</span>
       <span className="overflow-hidden rounded-full flex align-middle shadow-md aspect-square h-6">
         <input
           type="checkbox"
