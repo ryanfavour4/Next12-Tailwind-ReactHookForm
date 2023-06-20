@@ -81,9 +81,9 @@ const inputs = () => {
                     onClick={() => {
                       remove(index);
                     }}
-                    className="block w-1/2 text-center border p-2 bg-red-500 cursor-pointer mr-auto text-white text-base font-bold rounded-xl my-2"
+                    className="block w-1/2 text-center border p-2 px-0 bg-red-500 cursor-pointer mr-auto text-white text-sm font-bold rounded-xl my-2"
                   >
-                    Remove {field.name} 💢❌
+                    ❌ Remove {field.name} 
                   </span>
                 )}
               </div>

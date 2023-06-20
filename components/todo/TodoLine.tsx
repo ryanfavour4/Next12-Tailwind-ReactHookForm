@@ -1,4 +1,4 @@
-import React, { TouchEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { Itodo } from "../../interface/todo";
 
 type Props = {
@@ -26,15 +26,9 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
     }
 
     if (distanceHighCheck) {
-      // if (distanceHighCheck && incrementTrack > 0) {
-      //   setIncrementTrack(incrementTrack / currentX);
-      // }
       setIncrementTrack(incrementTrack - 15);
     }
     if (distanceLowCheck) {
-      // if (distanceHighCheck && incrementTrack > 0) {
-      //   setIncrementTrack(-(incrementTrack / currentX));
-      // }
       setIncrementTrack(incrementTrack + 15);
     }
   }
@@ -55,14 +49,8 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
     setIncrementTrack(0);
 
     if (incrementTrack > 15) {
-      console.log("Swiped right");
-      console.log(todoToDelete);
-      console.log(incrementTrack);
       handleDeleteTodo(todoToDelete);
     } else if (incrementTrack < -15) {
-      console.log("Swiped left");
-      console.log(todoToDelete);
-      console.log(incrementTrack);
       handleDeleteTodo(todoToDelete);
     }
 
@@ -77,8 +65,7 @@ const TodoLine = ({ todo, handleToggleComplete, handleDeleteTodo }: Props) => {
       }}
       onTouchMove={handleTouchMove}
       onTouchEnd={() => {
-        handleTouchEnd();
-        setTodoToDelete(todo);
+        handleTouchEnd(), setTodoToDelete(todo);
       }}
       style={{
         transform: `translateX(${incrementTrack}pt)`,
